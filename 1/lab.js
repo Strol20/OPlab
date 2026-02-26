@@ -1,4 +1,5 @@
 
+numFiboNum = 0;
 
 function* fibonacciNumber(maxRange){
     let counter = 0;
@@ -25,6 +26,7 @@ function* fibonacciNumber(maxRange){
         firstTerm = secondTerm;
         secondTerm = result;  
         counter += 1;
+        numFiboNum += 1;
     }
 }
 
@@ -60,6 +62,7 @@ iterable = fibonacciNumber();
 iterator = iteratorWithTime(iterable,1);
 
 console.log(iterator)
+console.log(numFiboNum)
 
 //Мені не подобається що воно видає просто інфініті. 
 //Можна перетворити числа в BigInt, але прошавай пам'ять

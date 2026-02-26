@@ -1,4 +1,4 @@
-//Генератор - пошагово генерує елементи об'єкта
+
 
 function* fibonacciNumber(maxRange){
     let counter = 0;
@@ -12,14 +12,28 @@ function* fibonacciNumber(maxRange){
         secondTerm = result;  
         counter += 1;
     }
-
 }
+
+function* fibonacciNumber(maxRange){
+    let counter = 0;
+    let firstTerm = 0n;
+    let secondTerm = 1n;
+
+    while(maxRange == undefined || counter < maxRange){
+        yield firstTerm;
+        let result = firstTerm + secondTerm;
+        firstTerm = secondTerm;
+        secondTerm = result;  
+        counter += 1;
+    }
+}
+
 // Для тесту Перевірка
 // console.log([
 //   [...fibonacciNumber(10)],
 // ]);
 
-// for (const num of fibonacciNumber(1000)) { //Бесконечность не предел!!
+// for (const num of fibonacciNumber()) { //Бесконечность не предел!!
 //     console.log(num); 
 // } 
 
@@ -36,13 +50,14 @@ function iteratorWithTime(iterable, time){
         list.push(curent.value)
     }
     return{
-        sum: sum
+        sum: sum,
+        averageNum: sum / BigInt(list.length)
     }
 }
 
 iterable = fibonacciNumber();
 
-iterator = iteratorWithTime(iterable,10);
+iterator = iteratorWithTime(iterable,1);
 
 console.log(iterator)
 

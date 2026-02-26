@@ -1,7 +1,7 @@
 //Генератор - пошагово генерує елементи об'єкта
 
 function* fibonacciNumber(maxRange){
-    let counter = 2;
+    let counter = 0;
     let firstTerm = 0;
     let secondTerm = 1
 

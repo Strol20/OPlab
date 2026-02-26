@@ -15,11 +15,14 @@ function* fibonacciNumber(maxRange){
 
 }
 
-console.log([
-  [...fibonacciNumber(10)],
-]);
+// console.log([
+//   [...fibonacciNumber(10)],
+// ]);
+// Для тесту Перевірка 
+// for (const num of fibonacciNumber()) { //Бесконечность не предел!!
+//     console.log(num); 
+// }
 
-for (const num of fibonacciNumber(1)) {
-    console.log(num); 
+function iterator(iterable,second){
     
 }

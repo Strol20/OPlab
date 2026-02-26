@@ -5,9 +5,9 @@ function* fibonacciNumber(maxRange){
     let firstTerm = 0;
     let secondTerm = 1
 
-    while(maxRange == undefined || counter < maxRange-1){ // -1 бо починається лічильник з 0 а не з 1, без нього виводилоб на 1 число більше 
+    while(maxRange == undefined || counter < maxRange){
+        yield firstTerm;
         let result = firstTerm + secondTerm;
-        yield result;
         firstTerm = secondTerm;
         secondTerm = result;  
         counter += 1;

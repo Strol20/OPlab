@@ -12,21 +12,14 @@ function* fibonacciNumber(maxRange){
         firstTerm = secondTerm;
         secondTerm = result;  
         counter += 1;
+        numFiboNum += 1;
     }
 }
 
-function* fibonacciNumber(maxRange){
-    let counter = 0;
-    let firstTerm = 0n;
-    let secondTerm = 1n;
-
-    while(maxRange == undefined || counter < maxRange){
-        yield firstTerm;
-        let result = firstTerm + secondTerm;
-        firstTerm = secondTerm;
-        secondTerm = result;  
-        counter += 1;
-        numFiboNum += 1;
+// Не дуже рандомно
+function* randomNumber(minRange = -10000, maxRange = 10000){
+    while(true){
+        yield Math.trunc(Math.random() * (maxRange - minRange) + minRange);
     }
 }
 
@@ -48,16 +41,18 @@ function iteratorWithTime(iterable, time){
     while(Date.now() < finishTime){
         curent = iterable.next();
         console.log(curent.value);
-        sum += curent.value;
+        sum += BigInt(curent.value);
         list.push(curent.value)
     }
     return{
         sum: sum,
-        averageNum: sum / BigInt(list.length)
+        averageNum: sum / BigInt(list.length),
+        list: list.length
     }
 }
 
-iterable = fibonacciNumber();
+// iterable = fibonacciNumber();
+iterable = randomNumber();
 
 iterator = iteratorWithTime(iterable,1);
 

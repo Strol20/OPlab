@@ -1,12 +1,11 @@
 
 numFiboNum = 0;
 
-function* fibonacciNumber(maxRange){
+function* fibonacciNumber(maxRange, endTime = Date.now() + 5000){
     let counter = 0;
     let firstTerm = 0n;
     let secondTerm = 1n;
-
-    while(maxRange == undefined || counter < maxRange){
+    while(Date.now() <= endTime || counter < maxRange){
         yield firstTerm;
         let result = firstTerm + secondTerm;
         firstTerm = secondTerm;

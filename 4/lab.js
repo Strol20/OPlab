@@ -10,19 +10,23 @@ function BiDirectionalPriorityQueue() {
         switch (type) { //Щоб не робити багато іфів
             case 'highest': //Прикол, що кейси можна групувати
             case 'lowest':
-                let priority = NaN;
-                for (i = 0; i <= queue.length; i++) {
+                let priorityFor = 0;
+                for (i = 0; i < queue.length; i++) {
                     if(type == "highest"){
-                        priority < queue[i].priority ? priority = queue[i].priority : NaN 
+                        if(queue[priorityFor].priority < queue[i].priority){
+                            priority = queue[i].priority
+                        }
                     }else if(type == "lowest"){
-                        priority > queue[i].priority ? priority = queue[i].priority : NaN
+                        if(queue[priorityFor].priority > queue[i].priority){
+                            priority = queue[i].priority
+                        }
                     }
                 }
-                return
+                return priority;
             case 'oldest':
-                return (queue[0]);
+                return 0;
             case 'newest':
-                return (queue[queue.length - 1])
+                return queue.length - 1;
             default:
                 console.log('Міша, неправильний тип. Давай всьо па новой')
 
@@ -34,7 +38,7 @@ function BiDirectionalPriorityQueue() {
             queue.push({ item: item, priority: priority })
         },
         dequeue(type) { //Видалити елемент з черги
-            _findFromType
+            const index = _findIndexFromType(type);
         },
         peek(type) { //Переглянути що то за предмет
             item = _findFromType(type);

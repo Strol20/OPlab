@@ -3,38 +3,45 @@
 //Буде масівчік, новіші і старіші - це номера елементів. вище і нижче, в об'єкті записати 
 
 
-function BiDirectionalPriorityQueue(){
+function BiDirectionalPriorityQueue() {
     const queue = [];
-    function _findFromType(type){ //пошук за типом
-        let priority = NaN;
+    function _findFromType(type) { //пошук за типом
+        
+        switch (type) { //Щоб не робити багато іфів
+            case 'highest': //Прикол, що кейси можна групувати
+            case 'lowest':
+                let priority = NaN;
+                for (i = 0; i <= queue.length; i++) {
+                    if(type == "highest"){
+                        priority < queue[i].priority ? priority = queue[i].priority : NaN 
+                    }else if(type == "lowest"){
+                        priority > queue[i].priority ? priority = queue[i].priority : NaN
+                    }
+                }
+                return
+            case 'oldest':
+                return (queue[0]);
+            case 'newest':
+                return (queue[queue.length - 1])
+            default:
+                console.log('Міша, неправильний тип. Давай всьо па новой')
 
-        for(i=0; i <= queue.length; i++){
-            switch(type){ //Щоб не робити багато іфів
-                case'higest':
-                case'lowest':
-
-                case'oldest':
-                    return(queue[0]);
-                case'newest':
-                    return(queue[queue.length-1])
-                default:
-                    console.log('Міша, неправильний тип. Давай всьо па новой')
-            }
         }
     }
 
-    return{
-        enqueue(item, priority){ //Додавання елементів з пріоритетом
-            queue.push({item: item, priority: priority})
+    return {
+        enqueue(item, priority) { //Додавання елементів з пріоритетом
+            queue.push({ item: item, priority: priority })
         },
-        dequeue(type){ //Видалити елемент з черги
+        dequeue(type) { //Видалити елемент з черги
             _findFromType
         },
-        peak(type){ //Переглянути що то за предмет
-
+        peek(type) { //Переглянути що то за предмет
+            item = _findFromType(type);
+            console.log(item)
         }
-        
-    }    
+
+    }
 }
 
 

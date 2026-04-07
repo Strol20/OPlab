@@ -4,7 +4,23 @@
 
 
 function BiDirectionalPriorityQueue(){
-  
+    const queue = [];
+    function _findFromType(type){ //пошук за типом. Щоб кожен раз не писати перевірку за типом
+
+    }
+
+    return{
+        enqueue(item, priority){ //Додавання елементів з пріоритетом
+
+        },
+        dequeue(type){ //Видалити елемент з черги
+            _findFromType
+        },
+        peak(type){ //Переглянути що то за предмет
+
+        }
+        
+    }    
 }
 
 

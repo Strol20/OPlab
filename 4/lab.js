@@ -5,13 +5,27 @@
 
 function BiDirectionalPriorityQueue(){
     const queue = [];
-    function _findFromType(type){ //пошук за типом. Щоб кожен раз не писати перевірку за типом
+    function _findFromType(type){ //пошук за типом
+        let priority = NaN;
 
+        for(i=0; i <= queue.length; i++){
+            switch(type){ //Щоб не робити багато іфів
+                case'higest':
+                case'lowest':
+
+                case'oldest':
+                    return(queue[0]);
+                case'newest':
+                    return(queue[queue.length-1])
+                default:
+                    console.log('Міша, неправильний тип. Давай всьо па новой')
+            }
+        }
     }
 
     return{
         enqueue(item, priority){ //Додавання елементів з пріоритетом
-
+            queue.push({item: item, priority: priority})
         },
         dequeue(type){ //Видалити елемент з черги
             _findFromType

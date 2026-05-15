@@ -24,7 +24,46 @@ function memoizeFunction(fn, maxRange = Infinity, policy = "NONE", time = 0) {
                 return curent.value;
             }
         }
+        let result = fn.apply(this, args);
 
+        // Ліміт кешу
+        if (maxRange !== Infinity && cache.size >= maxRange) {
+
+            if (policy === "LRU" || policy === "NONE") {
+                let oldestKey = cache.keys().next().value;
+                cache.delete(oldestKey);
+            }
+            else if (policy === "LFU") {
+                let minCount = Infinity;
+                let lfuKey = null;
+                for (const [key, val] of cache.entries()) {
+                    if (val.count < minCount) {
+                        minCount = val.count;
+                        lfuKey = key;
+                    }
+                }
+                if (lfuKey) cache.delete(lfuKey);
+            }
+            else if (policy === "TIME") {
+                let oldestTime = Infinity;
+                let oldestKey = null;
+                for (const [key, val] of cache.entries()) {
+                    if (val.timestamp < oldestTime) {
+                        oldestTime = val.timestamp;
+                        oldestKey = key;
+                    }
+                }
+                if (oldestKey) cache.delete(oldestKey);
+            }
+        }
+
+        cache.set(key, {
+            value: result,
+            count: 1,
+            timestamp: currentTime
+        });
+
+        return result;
 
     }
 

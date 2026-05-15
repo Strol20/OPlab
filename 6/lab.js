@@ -57,3 +57,14 @@ function DataStreamSystem() {
         }
     };
 }
+
+// Тест
+const myLab = DataStreamSystem();
+
+// Запускаємо на 2 секунди
+myLab.start(2).then(result => {
+    console.log("Результат лабораторної:", result);
+    console.log("Глобальний лічильник:", totalProcessedElements);
+}).catch(err => {
+    console.log("Все зламалося:", err);
+});

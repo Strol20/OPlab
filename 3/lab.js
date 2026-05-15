@@ -68,3 +68,17 @@ function memoizeFunction(fn, maxRange = Infinity, policy = "NONE", time = 0) {
     }
 
 }
+
+// Тест
+const slowAdd = (a, b) => {
+    console.log(`Обчислення ${a} + ${b}...`);
+    return a + b;
+};
+
+// Зберігає не більше 2 результатів, витісне найменш використовувані
+let memoized = memoizeFunction(slowAdd, 2, "LFU");
+
+// console.log(memoized(1, 2));
+// console.log(memoized(1, 2)); // Бере з кешу
+// console.log(memoized(3, 4));
+// console.log(memoized(5, 6)); // Кеш переповнюється, одне значення вилітає

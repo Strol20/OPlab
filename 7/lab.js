@@ -20,6 +20,17 @@ function EventEmitter() {
             };
         },
 
+        // Розсилаємо інфу всім небайдужим
+        emit(eventName, data) {
+            if (!events[eventName]) {
+                // console.log(`Ніхто не слухає "${eventName}"`);
+                return;
+            }
 
+            // Проходимо по масиву і смикаємо колбеки
+            events[eventName].forEach(callback => {
+                callback(data);
+            });
+        }
     };
 }
